@@ -1,0 +1,81 @@
+Transformando um Template Bootstrap 5 em um Projeto MVC (ASP.NET Core)
+
+1. Criar o projeto MVC
+
+Se ainda não criou o projeto, abra o terminal ou Prompt de Comando e rode:
+
+dotnet new mvc -n MeuProjetoMVC
+cd MeuProjetoMVC
+
+Isso cria uma estrutura básica de um projeto MVC.
+
+2. Adicionar o template Bootstrap ao projeto
+	1.	Copie os arquivos do template que você baixou (HTML, CSS, JS, imagens).
+	2.	No projeto MVC, vá até a pasta wwwroot e crie subpastas:
+	•	css/ → Para arquivos CSS
+	•	js/ → Para scripts JS
+	•	img/ → Para imagens
+	3.	Cole os arquivos do template nas pastas correspondentes.
+
+3. Integrar o template ao layout MVC
+	1.	Abra Views/Shared/_Layout.cshtml.
+	2.	Substitua o HTML base pelo do seu template.
+	3.	Atualize os caminhos dos arquivos CSS e JS:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meu Projeto MVC</title>
+
+    <!-- Bootstrap e CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/estilos.css" />
+</head>
+<body>
+    <header>
+        <!-- Navbar do seu template -->
+    </header>
+
+    <main role="main">
+        @RenderBody() <!-- Aqui serão carregadas as Views -->
+    </main>
+
+    <footer>
+        <!-- Rodapé do seu template -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+</body>
+</html>
+
+4. Criar as Views e Controllers
+
+Agora, você pode criar Views e Controllers para cada página do template.
+
+Exemplo: Para uma página Home, crie um controlador:
+
+dotnet new controller -name HomeController
+
+E dentro da pasta Views/Home, crie um arquivo Index.cshtml.
+
+Exemplo de Views/Home/Index.cshtml:
+
+@{
+    ViewData["Title"] = "Página Inicial";
+}
+
+<h1>Bem-vindo ao meu projeto MVC</h1>
+<p>Essa é uma página baseada no template Bootstrap.</p>
+
+Agora, se rodar dotnet run e acessar http://localhost:5000, verá a página sendo renderizada com o template.
+
+5. Melhorias e Personalização
+	•	Criar Partials: Se houver elementos repetitivos (ex: navbar e footer), crie partials para facilitar a manutenção.
+	•	Inserir dados dinâmicos: Use o @Model para exibir informações do backend.
+	•	Configurar Rotas: Personalize as URLs no arquivo Startup.cs ou Program.cs.
+
+Se estiver usando outra tecnologia como Laravel ou Django, me avise para eu adaptar o guia!
